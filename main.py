@@ -40,6 +40,10 @@ def sortbyones(L):
     return L
     
 def sortbyones(L):
+    if len(L) == 1:
+        return None
+    if ones(L[0]) == ones(L[1]):
+        return [[L[0]] + sortbyones(L[1:])
     
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
