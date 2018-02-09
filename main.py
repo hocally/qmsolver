@@ -44,17 +44,16 @@ def sortbyones(L):
 
 
 def groupbyones(L):
-	if len(L) == 1:
-		return L[0]
-	elif ones(L[0]) == O:
+	
 
-def grouper(L, O)
-	if len(L) == 1:
-		return L[0]
-	elif ones(L[0]) != ones(L[1])
-		return L[0]
-	else:
-		return
+def onesrow(L, O):
+	c = 0
+	for N in L:
+		if ones(N) == O:
+			c += 1
+		else:
+			return c
+
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(l)
