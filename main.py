@@ -39,13 +39,18 @@ def sortbyones(L):
             break
     return L
     
-def sortbyones(L):
+def groupbyones(L):
     if len(L) == 1:
-        return None
+        return L[0]
     if ones(L[0]) == ones(L[1]):
-        return [[L[0]] + sortbyones(L[1:])
+        return [[L[0], L[1]]] + groupbyones(L[2:])
+    else:
+        return [L[0]] +  [groupbyones(L[1:])]
     
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(l)
-print(sortbyones(l))
+l = sortbyones(l)
+print(l)
+l = groupbyones(l)
+print(l)
