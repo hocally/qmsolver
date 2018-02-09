@@ -71,9 +71,28 @@ def compareterms(A, B):
 	if len(A) != len(B):
 		return None
 	c = 0
-	#while c < len(A):
-	#	if
+	while c < len(A):
+		if A[c] != B[c]:
+			C = list(A)
+			C[c] = '-'
+			C = str(C)
+			return C
+		c += 1
+	return None
 
+
+def comparegroups(L):
+	N = []
+	M = L[1:]
+	for A in L:
+		for B in M:
+			if hamming(A, B) == 1:
+				N.append(compareterms(A, B))
+			else:
+				N.append(A)
+				N.append(B)
+		M = M[1:]
+	return N
 
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -81,3 +100,4 @@ print(l)
 l = sortbyones(l)
 print(l)
 print(groupbyones(l))
+print(comparegroups(l))
