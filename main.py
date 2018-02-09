@@ -4,7 +4,8 @@ def ones(N):
         if B == '1':
             o += 1
     return o
-    
+
+
 def hamming(A, B):
     d = 0
     c = 0
@@ -15,12 +16,14 @@ def hamming(A, B):
             d += 1
         c += 1
     return d
-    
+
+
 def mintermgen(L):
     m = []
     for N in L:
         m += [format(N, '08b')]
     return m
+
 
 def sortbyones(L):
     c = 0
@@ -38,15 +41,15 @@ def sortbyones(L):
         if s == True:
             break
     return L
-    
+
+
 def groupbyones(L):
-    if len(L) == 1:
-        return L[0]
-    if ones(L[0]) == ones(L[1]):
-        return [[L[0], L[1]]] + groupbyones(L[2:])
-    else:
-        return [L[0]] +  [groupbyones(L[1:])]
-    
+	i = 0
+	j = 0
+	while i < len(L) - 1:
+		if ones(L[i]) != ones(L[i + 1]):
+
+
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(l)
