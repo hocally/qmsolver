@@ -45,17 +45,17 @@ def sortbyones(L):
 
 def groupbyones(L):
 	R = []
-	T = L
-	while len(T) > 1:
+	S = []
+	while len(L) > 0:
 		c = 0
-		o = onesrow(T[0], ones(T[0]))
+		o = onesrow(L, ones(L[0]))
 		while c < o:
-			S = []
-			S.append(T[c])
-			R.append(S)
+			S.append(L[c])
 			c += 1
-		T = T[c:]
-	return T
+		R.append(S)
+		S = []
+		L = L[o:]
+	return R
 
 
 def onesrow(L, O):
@@ -67,10 +67,17 @@ def onesrow(L, O):
 			break
 	return c
 
+def compareterms(A, B):
+	if len(A) != len(B):
+		return None
+	c = 0
+	#while c < len(A):
+	#	if
+
+
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(l)
 l = sortbyones(l)
 print(l)
-l = groupbyones(l)
-print(l)
+print(groupbyones(l))
