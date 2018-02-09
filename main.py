@@ -68,12 +68,13 @@ def onesrow(L, O):
 	return c
 
 def compareterms(A, B):
+    print(A)
 	if len(A) != len(B):
 		return None
 	c = 0
 	while c < len(A):
 		if A[c] != B[c]:
-			C = list(A)
+			print(C)
 			C[c] = '-'
 			C = str(C)
 			return C
@@ -82,17 +83,22 @@ def compareterms(A, B):
 
 
 def comparegroups(L):
-	N = []
-	M = L[1:]
-	for A in L:
-		for B in M:
-			if hamming(A, B) == 1:
-				N.append(compareterms(A, B))
-			else:
-				N.append(A)
-				N.append(B)
-		M = M[1:]
-	return N
+    T = L
+    N = []
+    i = 0
+    while i < len(L) - 1:
+        j = i + 1
+        while j < len(L) - 1:
+            for A in L[i]:
+                for B in L[j]:
+                    if hamming(A, B) == 1:
+                        N.append(compareterms(A, B))
+                        L[i].remove(A)
+                        L[j].remove(B)
+                    else:
+                        N.append(A)
+                        N.append(B)
+                        
 
 
 l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
