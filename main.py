@@ -94,9 +94,13 @@ def compareterms(A, B):
 
 def comparegroups(L):
 	N = []
+	i = 0
 	for i in range(0, len(L)):
+		print('kek')
 		for j in range(i + 1, len(L)):
+			print('lel')
 			for k in range(0, len(L[i]) - 1):
+				print('dek')
 				for l in range(0, len(L[j])):
 					print(i)
 					print(j)
@@ -113,9 +117,9 @@ def comparegroups(L):
 	return N
 
 
-l = mintermgen([0, 1, 2, 3])
-print(l)
-l = sortbyones(l)
-print(l)
-print(groupbyones(l))
-print(comparegroups(groupbyones(l)))
+L = mintermgen([0, 1, 2, 3])
+print(L)
+L = sortbyones(L)
+print(L)
+print(groupbyones(L))
+print(comparegroups(groupbyones(L)))
