@@ -58,6 +58,16 @@ def groupbyones(L):
 	return R
 
 
+def remove_duplicates(values):
+	output = []
+	seen = set()
+	for value in values:
+		if value not in seen:
+			output.append(value)
+			seen.add(value)
+	return output
+
+
 def onesrow(L, O):
 	c = 0
 	for N in L:
@@ -83,24 +93,27 @@ def compareterms(A, B):
 
 
 def comparegroups(L):
-	T = L
 	N = []
-	i = 0
-	for i in range(0, len(L) - 2):
-		for j in range(i + 1, len(L) - 1):
-			if hamming(L[i], L[j]) == 1:
-				N.append(compareterms(L[i], L[j]))
-				L[i].remove(L[i])
-				L[j].remove(L[j])
-			else:
-				N.append(L[i])
-				N.append(L[j])
-			j += 1
-		i += 1
+	for i in range(0, len(L)):
+		for j in range(i + 1, len(L)):
+			for k in range(0, len(L[i]) - 1):
+				for l in range(0, len(L[j])):
+					print(i)
+					print(j)
+					print(k)
+					print(l)
+					if hamming(L[i][k], L[j][l]) == 1:
+						N.append(compareterms(L[i][k], L[j][l]))
+						L[i].remove(L[i][k])
+						L[j].remove(L[j][l])
+					else:
+						N.append(L[i][k])
+						N.append(L[j][l])
+						print(N)
 	return N
 
 
-l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+l = mintermgen([0, 1, 2, 3])
 print(l)
 l = sortbyones(l)
 print(l)
