@@ -102,31 +102,31 @@ def compareterms(A, B):
 
 
 def comparegroups(L, M):
+	print(L)
+	print(M)
 	N = []
-	R = []
-	for A in L:
-		for B in M:
-			if hamming(A, B) == 1:
-				N.append(compareterms(A, B))
-				R.append(A)
-				R.append(B)
+	for i in range(0, len(L) - 1):
+		for j in range(0, len(M) - 1):
+			if hamming(L[i], M[j]) == 1:
+				N.append(compareterms(L[i], M[j]))
+				L.pop(i)
+				M.pop(j)
 			else:
-				N.append(A)
-				N.append(B)
-	N = [x for x in N if x not in R]
+				N.append(L[i])
+				N.append(M[j])
 	return N
 
 
 def runalgorithim(L):
 	c = 0
 	N = []
-	while c < len(L) - 1:
+	for c in range(0, len(L) - 1):
 		N.extend(comparegroups(L[c], L[c + 1]))
 		c += 1
 	return N
 
 
-L = mintermgen([0, 1, 2, 3, 4, 5, 6])
+L = mintermgen([0, 1, 2, 3])
 print(L)
 L = sortbyones(L)
 print(L)
