@@ -58,7 +58,7 @@ def groupbyones(L):
 	return R
 
 
-def remove_duplicates(values):
+def removeduplicates(values):
 	output = []
 	seen = set()
 	for value in values:
@@ -66,6 +66,15 @@ def remove_duplicates(values):
 			output.append(value)
 			seen.add(value)
 	return output
+
+
+def removedashes(L):
+	N = []
+	for A in L:
+		for B in L:
+			if hamming(A, B) > 1:
+				N.append(B)
+	return L
 
 
 def onesrow(L, O):
@@ -92,34 +101,36 @@ def compareterms(A, B):
 	return None
 
 
-def comparegroups(L):
+def comparegroups(L, M):
 	N = []
-	i = 0
-	for i in range(0, len(L)):
-		print('kek')
-		for j in range(i + 1, len(L)):
-			print('lel')
-			for k in range(0, len(L[i]) - 1):
-				print('dek')
-				for l in range(0, len(L[j])):
-					print(i)
-					print(j)
-					print(k)
-					print(l)
-					if hamming(L[i][k], L[j][l]) == 1:
-						N.append(compareterms(L[i][k], L[j][l]))
-						L[i].remove(L[i][k])
-						L[j].remove(L[j][l])
-					else:
-						N.append(L[i][k])
-						N.append(L[j][l])
-						print(N)
+	R = []
+	for A in L:
+		for B in M:
+			if hamming(A, B) == 1:
+				N.append(compareterms(A, B))
+				R.append(A)
+				R.append(B)
+			else:
+				N.append(A)
+				N.append(B)
+	N = [x for x in N if x not in R]
 	return N
 
 
-L = mintermgen([0, 1, 2, 3])
+def runalgorithim(L):
+	c = 0
+	N = []
+	while c < len(L) - 1:
+		N.extend(comparegroups(L[c], L[c + 1]))
+		c += 1
+	return N
+
+
+L = mintermgen([0, 1, 2, 3, 4, 5, 6])
 print(L)
 L = sortbyones(L)
 print(L)
-print(groupbyones(L))
-print(comparegroups(groupbyones(L)))
+L = groupbyones(L)
+print(L)
+L = runalgorithim(L)
+print(L)
