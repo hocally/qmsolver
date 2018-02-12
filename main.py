@@ -101,38 +101,45 @@ def compareterms(A, B):
 	return None
 
 
-def comparegroups(L, M):
+def comparegroups(L):
 	N = []
-	i = 0
-	j = 0
-	while i < len(L):
-		while j < len(M):
-			if hamming(L[i], M[j]):
-				N.append(compareterms(L[i], M[j]))
-				L.pop(i)
-				M.pop(j)
+	Y = []
+	Z = []
+	print(L[0])
+	for a in L[0]:
+		for b in L[1]:
+
+			if hamming(a, b) == 1 and a not in Y:
+				N.append(compareterms(a, b))
+				Y.append(a)
+				Z.append(b)
+				break
+			elif hamming(a, b) == 1:
+				continue
 			else:
-				N.append(L[i])
-				N.append(M[j])
-			j += 1
-		i += 1
+				N.append(a)
+				N.append(b)
+	L[0] = [x for x in L[0] if x not in Y]
+	L[1] = [x for x in L[1] if x not in Z]
+	print(L[0])
 	return N
 
 
 def runalgorithim(L):
 	N = []
-	i = 0
-	while i < len(L) - 1:
-		N.append(comparegroups(L[i], L[i + 1]))
-		i += 1
+	for i in range(len(L) - 1):
+		#print(L)
+		N.extend(comparegroups(L))
+		#print(L)
+		L = L[1:]
 	return N
 
 
-L = mintermgen([0, 1, 2, 3, 5])
-print(L)
-L = sortbyones(L)
-print(L)
-L = groupbyones(L)
-print(L)
-L = runalgorithim(L)
-print(L)
+l = mintermgen([0, 1, 2, 3, 4, 5, 6, 7, 8])
+#print(l)
+l = sortbyones(l)
+#print(l)
+l = groupbyones(l)
+#print(l)
+M = runalgorithim(l)
+print(M)
